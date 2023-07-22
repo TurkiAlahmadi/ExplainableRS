@@ -1,0 +1,172 @@
+.App {
+}
+
+.Posters {
+  background-color: black;
+  width: 1438px;
+  height: 180px;
+  border: 1px solid black;
+  display: block;
+  text-align: center;
+}
+
+.UserProfile {
+  background-color: #466995;
+  width: 288px;
+  height: 720px;
+  float: left;
+
+}
+
+.Figures {
+  background-color: cornsilk;
+  width: 1152px;
+  height: 720px;
+  display: inline-block;
+  float: left;
+  border: 1px solid black;
+  text-align: center;
+
+}
+
+.title {
+  color: whitesmoke;
+  font-weight: bold;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 180px;
+  position: relative;
+  left: 10px;
+}
+
+input,
+textarea {
+  padding: 1px;
+}
+
+form button {
+  position: relative;
+  left: 0;
+  padding: 5px;
+}
+
+ul {
+  color: whitesmoke;
+  list-style: none;
+  position: relative;
+  top: 20px;
+  right: 20px;
+  text-align: left;
+  padding: 0;
+}
+
+#userprofile {
+  color: ghostwhite;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+  position: relative;
+  top: 10px;
+  padding: 10px 20px 40px 20px;
+}
+
+#movieTitle {
+  display: inline-block;
+  font-weight: normal;
+  font-size: large;
+  float: left;
+  position: relative;
+  right: 5px;
+}
+
+#movieRating {
+  display: inline-block;
+  font-weight: normal;
+  font-size: large;
+  position: relative;
+  right: 0;
+}
+
+#delMovButton {
+  color: black;
+  background-color: #466995;
+  font-weight: bold;
+  display: inline-block;
+  float: right;
+  position: relative;
+  right: 0;
+}
+
+.movie-app > .row {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+#postercontainer {
+  display: inline-block;
+}
+
+#posters {
+  height: 180px;
+  width: 130px;
+  border: 1px solid black;
+  display: inline-block;
+  float: left;
+
+}
+
+.row {
+  background-color: white;
+  display: inline-block;
+}
+
+.user-space {
+  background-color: white;
+  width: 480px;
+  height: 480px;
+  border: 1px solid black;
+  display: inline-block;
+  float: left;
+  position: relative;
+  left: 60px;
+  top: 60px;
+}
+
+.item-space {
+  background-color: white;
+  width: 480px;
+  height: 480px;
+  border: 1px solid black;
+  display: inline-block;
+  float: right;
+  position: relative;
+  right: 60px;
+  top: 60px;
+}
+
+.user-hover {
+  background-color: cornsilk;
+  width: 480px;
+  height: 140px;
+  display: block;
+  position: absolute;
+  left: 349px;
+  top: 780px;
+  text-align: left;
+}
+
+.item-hover {
+  background-color: cornsilk;
+  width: 480px;
+  height: 140px;
+  display: block;
+  position: absolute;
+  left: 900px;
+  top: 780px;
+  text-align: left;
+}
