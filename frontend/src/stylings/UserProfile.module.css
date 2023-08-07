@@ -1,0 +1,17 @@
+.UserProfile {
+    background-color: #466995;
+    position: absolute;
+    top: 212px;
+    width: 288px;
+    height: 720px;
+    float: left;
+    padding: 20px; /* Add padding to create space around the content */
+}
+
+#userprofile {
+    color: ghostwhite;
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+    margin-bottom: 20px; /* Add margin to create space between the heading and the form */
+}

@@ -1,0 +1,19 @@
+.dropdown-menu {
+    position: relative;
+}
+
+.dropdown-menu select {
+    width: 185px;
+    padding: 5px;
+}
+
+button {
+    position: relative;
+    top: 10px;
+    margin-top: 10px;
+}
+
+#rating {
+    position: relative;
+    top: 10px;
+}

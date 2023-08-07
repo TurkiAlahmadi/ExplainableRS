@@ -5,54 +5,29 @@
   background-color: black;
   width: 1438px;
   height: 180px;
+  position: absolute;
+  top: 0px;
   border: 1px solid black;
   display: block;
   text-align: center;
 }
 
-.UserProfile {
-  background-color: #466995;
-  width: 288px;
-  height: 720px;
-  float: left;
-
-}
-
 .Figures {
-  background-color: cornsilk;
+  background-color: white;
   width: 1152px;
   height: 720px;
-  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 212px;
   float: left;
   border: 1px solid black;
   text-align: center;
-
 }
 
 .title {
   color: whitesmoke;
   font-weight: bold;
   text-align: center;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  width: 180px;
-  position: relative;
-  left: 10px;
-}
-
-input,
-textarea {
-  padding: 1px;
-}
-
-form button {
-  position: relative;
-  left: 0;
-  padding: 5px;
 }
 
 ul {
@@ -107,17 +82,26 @@ ul {
   flex-wrap: nowrap;
 }
 
-#postercontainer {
-  display: inline-block;
+container-fluid
+
+#poster-container {
+  height: 280px;
+  position: absolute;
+  top: 0;
 }
 
-#posters {
+#poster-image {
   height: 180px;
   width: 130px;
   border: 1px solid black;
   display: inline-block;
   float: left;
-
+  margin: 0px 5px;
+}
+#poster-title {
+  position: relative;
+  top: 200px;
+  left: 0px;
 }
 
 .row {
@@ -127,46 +111,64 @@ ul {
 
 .user-space {
   background-color: white;
-  width: 480px;
-  height: 480px;
+  width: 460px;
+  height: 460px;
   border: 1px solid black;
   display: inline-block;
   float: left;
   position: relative;
-  left: 60px;
+  left: 20px;
+  top: 60px;
+}
+
+.user-legend {
+  display: inline-block;
+  float: left;
+  position: relative;
+  left: 10px;
   top: 60px;
 }
 
 .item-space {
   background-color: white;
-  width: 480px;
-  height: 480px;
+  width: 460px;
+  height: 460px;
   border: 1px solid black;
   display: inline-block;
   float: right;
-  position: relative;
-  right: 60px;
+  position: absolute;
+  right: 130px;
+  top: 60px;
+}
+
+.item-legend {
+  display: inline-block;
+  float: left;
+  position: absolute;
+  right: 10px;
   top: 60px;
 }
 
 .user-hover {
-  background-color: cornsilk;
+  background-color: white;
   width: 480px;
   height: 140px;
-  display: block;
+  display: inline-block;
+  float: left;
   position: absolute;
-  left: 349px;
-  top: 780px;
+  left: 20px;
+  top: 550px;
   text-align: left;
 }
 
 .item-hover {
-  background-color: cornsilk;
+  background-color: white;
   width: 480px;
   height: 140px;
-  display: block;
+  display: inline-block;
+  float: right;
   position: absolute;
-  left: 900px;
-  top: 780px;
+  right: 95px;
+  top: 550px;
   text-align: left;
 }
