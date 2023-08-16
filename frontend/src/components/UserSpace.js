@@ -52,6 +52,18 @@ export const UserSpace = ({data, userDataUpdate, itemDataUpdate, userColors}) =>
             .on("mouseenter", (event, d) => hoverOn(d))
             .on("mouseleave", () => hoverOff())
             .on("click", (event, d) => handleClick(event, d.id));
+        /*
+        svg.selectAll("circle")
+            .sort((a, b) => {
+                if (a.color === userColors.self) {
+                    return 1;
+                } else if (a.color === userColors.similar && b.color !== userColors.self) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            });
+         */
 
         // Define interaction handlers
         function hoverOn(d) {
@@ -101,7 +113,7 @@ export const UserSpace = ({data, userDataUpdate, itemDataUpdate, userColors}) =>
             .attr("r", 5)
             .attr("cx", 10)
             .attr("fill", d => d.color)
-            .attr("opacity", 1)
+            .attr("opacity", 0.5)
             .attr("stroke", d => d.color)
             .attr("fill-opacity", 0.5)
             .attr("stroke-width", 1);
@@ -109,7 +121,7 @@ export const UserSpace = ({data, userDataUpdate, itemDataUpdate, userColors}) =>
         legendItems.append("text")
             .attr("x", 20)
             .attr("dy", "0.35em")
-            .style("font-size", "14px")
+            .style("font-size", "13px")
             .style("font-weight", "normal")
             .text(d => d.label);
 
@@ -131,10 +143,12 @@ export const UserSpace = ({data, userDataUpdate, itemDataUpdate, userColors}) =>
             />
             {hover && (
                 <div className="user-hover">
-                    Favorite Genres: {user.favoriteGenres}
-                    <br />
-                    <br />
-                    Favorite Tags: {user.favoriteTags}
+                    <>
+                    <p><strong>Top Watched Genres:</strong> {user.favoriteGenres}
+                        <br />
+                        <strong>Common Tags:</strong> {user.favoriteTags}
+                    </p>
+                    </>
                 </div>
             )}
         </div>

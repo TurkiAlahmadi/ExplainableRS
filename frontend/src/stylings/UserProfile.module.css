@@ -1,9 +1,9 @@
 .UserProfile {
     background-color: #466995;
     position: absolute;
-    top: 212px;
+    top: 250px;
     width: 288px;
-    height: 720px;
+    height: 750px;
     float: left;
     padding: 20px; /* Add padding to create space around the content */
 }

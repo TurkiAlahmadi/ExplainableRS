@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export const Posters = () => {
     return (
         <div className="container-fluid movie-app">
-            <div className="row justify-content-start">
+            <div className="row">
                 <PosterList/>
             </div>
         </div>

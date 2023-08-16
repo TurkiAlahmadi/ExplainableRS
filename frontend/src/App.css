@@ -1,24 +1,36 @@
-.App {
+.body {
+  background-color: #466995;
 }
 
-.Posters {
-  background-color: black;
-  width: 1438px;
-  height: 180px;
+#app-header {
+  width: 1440px;
   position: absolute;
   top: 0px;
-  border: 1px solid black;
+  color: white;
+  font-weight: bold;
   display: block;
+  background-color: #466995;
   text-align: center;
+
+}
+
+#recommendation-title {
+  position: absolute;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  top: 30px;
+  left: 5px;
+
 }
 
 .Figures {
   background-color: white;
   width: 1152px;
-  height: 720px;
+  height: 750px;
   position: absolute;
   right: 0px;
-  top: 212px;
+  top: 250px;
   float: left;
   border: 1px solid black;
   text-align: center;
@@ -77,36 +89,92 @@ ul {
   right: 0;
 }
 
-.movie-app > .row {
-  overflow-x: auto;
-  flex-wrap: nowrap;
+.row {
+  background-color: white;
+  display: inline-block;
+  height: 300px;
 }
 
-container-fluid
-
-#poster-container {
-  height: 280px;
-  position: absolute;
-  top: 0;
+.d-flex{
+  overflow-x: auto;
+  position: relative;
+  top: 45px;
 }
 
 #poster-image {
   height: 180px;
   width: 130px;
-  border: 1px solid black;
   display: inline-block;
   float: left;
-  margin: 0px 5px;
-}
-#poster-title {
-  position: relative;
-  top: 200px;
-  left: 0px;
 }
 
-.row {
-  background-color: white;
+.poster-border {
+  width: 132px;
+  height: 182px;
+  border: 1px solid black;
+  margin-right: 10px;
+}
+
+.poster-border div{
+  position: relative;
+  top: -180px;
+  background: black;
   display: inline-block;
+  float: left;
+  height: 182px;
+  width: 132px;
+  color: white;
+  margin-bottom: 0px;
+  font-family: sans-serif;
+  text-align: center;
+  opacity: 0;
+  visibility: visible;
+  -webkit-transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.poster-border:hover{
+  cursor: pointer;
+}
+
+.poster-border:hover div{
+  width: 130px;
+  height: 180px;
+  padding: 8px 15px;
+  visibility: visible;
+  opacity: 0.8;
+}
+
+#user-space-title {
+  position: absolute;
+  left: 180px;
+  top: 20px;
+}
+
+#user-space-description {
+  position: absolute;
+  width: 460px;
+  height: 30px;
+  left: 30px;
+  top: 60px;
+  text-align: left;
+  font-size: 14px;
+}
+
+#item-space-title {
+  position: absolute;
+  left: 720px;
+  top: 20px;
+}
+
+#item-space-description {
+  position: absolute;
+  text-align: left;
+  font-size: 14px;
+  left: 570px;
+  top: 60px;
+  width: 460px;
+  height: 30px;
 }
 
 .user-space {
@@ -118,7 +186,7 @@ container-fluid
   float: left;
   position: relative;
   left: 20px;
-  top: 60px;
+  top: 130px;
 }
 
 .user-legend {
@@ -126,7 +194,7 @@ container-fluid
   float: left;
   position: relative;
   left: 10px;
-  top: 60px;
+  top: 130px;
 }
 
 .item-space {
@@ -138,7 +206,7 @@ container-fluid
   float: right;
   position: absolute;
   right: 130px;
-  top: 60px;
+  top: 130px;
 }
 
 .item-legend {
@@ -146,7 +214,7 @@ container-fluid
   float: left;
   position: absolute;
   right: 10px;
-  top: 60px;
+  top: 130px;
 }
 
 .user-hover {
@@ -157,7 +225,7 @@ container-fluid
   float: left;
   position: absolute;
   left: 20px;
-  top: 550px;
+  top: 595px;
   text-align: left;
 }
 
@@ -169,6 +237,6 @@ container-fluid
   float: right;
   position: absolute;
   right: 95px;
-  top: 550px;
+  top: 595px;
   text-align: left;
 }

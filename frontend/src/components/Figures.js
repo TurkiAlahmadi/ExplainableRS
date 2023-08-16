@@ -12,9 +12,10 @@ export const Figures = ({initUserData, initItemData, userRatedMovies, recommende
     }
 
     const itemColors = {
-        recommended : "limegreen",
-        rated : "mediumpurple",
-        other : "navajowhite"
+        other : "navajowhite",
+        item_recommended : "limegreen",
+        user_recommended : "dodgerblue",
+        rated : "orangered"
     }
 
     const [userData, setUserData] = useState([]);
@@ -47,9 +48,9 @@ export const Figures = ({initUserData, initItemData, userRatedMovies, recommende
     // Handling item data updates
     const handleItemDataUpdate = () => {
         // Find movies rated by selected users
-        let selectedUsers = userData.filter(user => user.color === userColors["similar"]);
+        let selectedUsers = userData.filter(user => user.color === userColors.similar);
         if (!selectedUsers) {
-            itemData.map(item => item.color === itemColors["recommended"] ? item.color = itemColors["other"] : item.color)
+            itemData.map(item => item.color === itemColors.user_recommended ? item.color = itemColors.other : item.color)
             setItemData(itemData);
             return;
         }
@@ -66,12 +67,12 @@ export const Figures = ({initUserData, initItemData, userRatedMovies, recommende
             });
         });
         // Erase previous recommendations
-        itemData.map(item => item.color === itemColors["recommended"] ? item.color = itemColors["other"] : item.color)
+        itemData.map(item => item.color === itemColors.user_recommended ? item.color = itemColors.other : item.color)
         // Update data with new recommendations
         let filteredItemData = itemData.filter(item => updatedRecItems.includes(item.title));
         filteredItemData = filteredItemData.map(item => {
             let temp = Object.assign({}, item);
-            temp.color = itemColors["recommended"]
+            temp.color = itemColors.user_recommended
             return temp;
         });
         let newItemData = itemData.map(movie => filteredItemData.find(m => m.id === movie.id) || movie);
@@ -81,18 +82,29 @@ export const Figures = ({initUserData, initItemData, userRatedMovies, recommende
     return (
         <>
             <div className="Figures">
+                <h4 id="user-space-title">User Space</h4>
+                <p id="user-space-description">The user space displays all users. Hovering over users shows their preferneces below the figure.
+                    Clicking on users allows labeling them as similar/other. Recommendations are updated based on similar users.
+                </p>
                 <UserSpace
                     data={userData}
                     userDataUpdate={handleUserDataUpdate}
                     itemDataUpdate={handleItemDataUpdate}
                     userColors={userColors}
                 />
+                <h4 id="item-space-title">Item Space</h4>
+                <p id="item-space-description">The item space displays all movies. Item proximity equates
+                    to how similarly they were rated by users. Hovering over a movie provides more details about it below the figure.
+                </p>
                 <ItemSpace
                     data={itemData}
                     itemColors={itemColors}
                 />
             </div>
-            <PosterList itemData={itemData}/>
+            <PosterList
+                itemData={itemData}
+                itemColors={itemColors}
+            />
         </>
     );
 };

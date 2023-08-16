@@ -97,20 +97,22 @@ export const UserProfile = () => {
     };
 
     return (
-        <div className={styles.UserProfile}>
-            <h1 id="userprofile">Create a Movie Profile</h1>
-            <NewMovie
-                newMovie={newMovie}
-                setNewMovie={setNewMovie}
-                newRating={newRating}
-                handleMenuChange={handleMenuChange}
-                handleAddMovie={handleAddMovie}
-                movieTitles={movieTitles}
-            />
-            <MovieList allMovies={allMovies} handleDelete={handleDelete} />
-            <form onSubmit={handleSubmit}>
-                <button type="submit">Generate Recommendations</button>
-            </form>
+        <>
+            <div className={styles.UserProfile}>
+                <h1 id="userprofile">Create a Movie Profile</h1>
+                <NewMovie
+                    newMovie={newMovie}
+                    setNewMovie={setNewMovie}
+                    newRating={newRating}
+                    handleMenuChange={handleMenuChange}
+                    handleAddMovie={handleAddMovie}
+                    movieTitles={movieTitles}
+                />
+                <MovieList allMovies={allMovies} handleDelete={handleDelete} />
+                <form onSubmit={handleSubmit}>
+                    <button type="submit">Generate Recommendations</button>
+                </form>
+            </div>
             {!isLoadingData && (
                 <Figures
                     initUserData={userData}
@@ -118,8 +120,7 @@ export const UserProfile = () => {
                     userRatedMovies={userRatedMovies}
                     recommendedItems={recommendedItems}
                 />
-
             )};
-        </div>
+        </>
     );
 };
