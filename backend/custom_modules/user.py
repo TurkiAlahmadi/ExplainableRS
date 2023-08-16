@@ -35,13 +35,6 @@ class UserProfile:
                 index=[0])) # assuming that timestamp column is dropped
         profile_df = pd.concat(newrows).reset_index(drop=True)
         return profile_df
-
-    def delete_movies(self):
-        """
-        TODO: implement a method that allows the user to delete movies from the user profile.
-        """
-        pass
-
     def find_genre_distribution(self, movie_dataset:object, rating_dataset:object):
         """
         Create a distribution of genres watched by the user.

@@ -18,7 +18,7 @@ class Dataset:
         """
 
         self.data = self.data.drop("{}".format(col), axis='columns')
-    def filter_by_ratings(self, other, min_mov_ratings=25, min_user_ratings=20):
+    def filter_by_ratings(self, other, min_mov_ratings=10, min_user_ratings=10):
         """
         Filter users and movies by some minimum number of ratings.
         Movies with less than 30 ratings and users with less than 20
@@ -43,8 +43,6 @@ class Dataset:
         """
         Add genre columns in the movie dataframe for ease of
         calculation of genre distribution for each user.
-
-        :return:
         """
         if self.type != "movies":
             raise ValueError("This method should be applied to an instance of type 'movies' only")
@@ -58,8 +56,15 @@ class Dataset:
         # add genre columns
         for i in genres:
             dataset[i] = dataset.genres.apply(lambda x: 1 if i in x else 0)
-        # remove original "genres" column
-        self.data = dataset.drop("genres", axis='columns')
+        self.data = dataset
+    def get_titles(self):
+        """
+        Get all movie titles.
+        """
+        if self.type != "movies":
+            raise ValueError("This method should be applied to an instance of type 'movies' only")
+        dataset = self.data.copy()
+        return dataset['title'].to_list()
     def add_user_profile(self, df):
         """
         Add new user ratings to the ratings dataset.
@@ -81,4 +86,17 @@ class Dataset:
             raise ValueError("Please input a Recommender object")
         if self.type != "movies":
             raise ValueError("This method should be applied to an instance of type 'movies' only")
-        self.data['innerId'] = self.data['movieId'].apply(lambda x: model.trainset.to_inner_iid(x))
+        innerIds = self.data['movieId'].apply(lambda x: model.trainset.to_inner_iid(x))
+        self.data.insert(loc=1, column='innerId', value=innerIds)
+
+    def edit_movie_title(self):
+        if self.type != "movies":
+            raise ValueError("The instance argument of this method should be of type 'movies' only")
+        def edit_title(movie_title):
+            if ", The" in movie_title:
+                title = movie_title.split(", The")
+                title = "The " + title[0] + title[1]
+                return title
+            else:
+                return movie_title
+        self.data.title = self.data.title.apply(edit_title)
