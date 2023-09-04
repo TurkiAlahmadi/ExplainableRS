@@ -1,17 +1,21 @@
-.body {
-  background-color: #466995;
+.main-page {
+  overflow-x: hidden;
 }
 
 #app-header {
-  width: 1440px;
+  width: 1435px;
+  margin: 1px 2px;
+  border-radius: 20px;
+  border-color: white;
+  border-width: 1px;
+  height: auto;
   position: absolute;
-  top: 0px;
+  top: 0;
   color: white;
   font-weight: bold;
   display: block;
   background-color: #466995;
   text-align: center;
-
 }
 
 #recommendation-title {
@@ -20,20 +24,71 @@
   color: black;
   font-weight: bold;
   top: 30px;
-  left: 5px;
+  left: 15px;
+}
 
+.Instructions {
+  background-color: white;
+  margin: 0 2px;
+  border-radius: 20px;
+  width: 1160px;
+  height: 725px;
+  position: absolute;
+  left: 275px;
+  top: 36px;
+  float: left;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.loading {
+  position: absolute;
+  top: 24px;
+  background-color: white;
+  width: 1435px;
+  height: 226px;
+}
+
+#loading-text {
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+  padding: 113px 0;
+}
+
+.UserProfile {
+  background-color: #466995;
+  margin: 0 2px;
+  position: absolute;
+  border-radius: 20px;
+  top: 0;
+  left: 0px;
+  width: 270px;
+  height: 725px;
+  float: left;
+  padding: 15px;
 }
 
 .Figures {
   background-color: white;
-  width: 1152px;
-  height: 750px;
+  margin: 0 2px;
+  border-radius: 20px;
+  width: 1160px;
+  height: 725px;
   position: absolute;
-  right: 0px;
+  left: 275px;
   top: 250px;
   float: left;
   border: 1px solid black;
   text-align: center;
+}
+
+#userprofile {
+  color: ghostwhite;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+  margin-bottom: 25px;
 }
 
 .title {
@@ -58,25 +113,133 @@ ul {
   font-weight: bold;
   font-size: larger;
   position: relative;
-  top: 10px;
-  padding: 10px 20px 40px 20px;
+  top: 5px;
 }
 
 #movieTitle {
-  display: inline-block;
   font-weight: normal;
-  font-size: large;
-  float: left;
-  position: relative;
-  right: 5px;
+  font-size: small;
+  width: 170px;
+  margin-bottom: 5px;
 }
 
-#movieRating {
-  display: inline-block;
-  font-weight: normal;
-  font-size: large;
+#buttonGroup {
+  overflow-y: hidden;
   position: relative;
-  right: 0;
+  top: 12px;
+  margin: 0;
+}
+
+#addMovieButton {
+  border-radius: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+  position: relative;
+  top: 0px;
+  width: 100px;
+  height: 50px;
+  background-color: #466995;
+  color: white;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+#addMovieButton:hover {
+  padding: 0;
+  border-radius: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+  position: relative;
+  top: 0px;
+  width: 100px;
+  height: 50px;
+  background-color: white;
+  color: #466995;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+#submitButton {
+  padding: 0;
+  border-radius: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+  position: relative;
+  top: 0px;
+  width: 120px;
+  height: 50px;
+  background-color: #466995;
+  color: white;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+#submitButton:hover {
+  padding: 0;
+  border-radius: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+  position: relative;
+  top: 0px;
+  width: 120px;
+  height: 50px;
+  background-color: white;
+  color: #466995;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.delButton {
+  padding: 1px;
+  position: relative;
+  top: 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: firebrick;
+  border-radius: 100%;
+  width: 17.5px;
+  height: 17.5px;
+  font-size: 8px;
+  font-weight: bolder;
+  text-align: center;
+  color: firebrick;
+  margin-left: 5px;
+  position: relative;
+  background-color: white;
+}
+.delButton:hover {
+  padding: 1px;
+  border: none;
+  position: relative;
+  top: 0;
+  border-radius: 100%;
+  width: 17.5px;
+  height: 17.5px;
+  font-size: 8px;
+  font-weight: bolder;
+  text-align: center;
+  color: white;
+  position: relative;
+  background-color: firebrick;
+}
+
+.list-container {
+  max-height: 500px;
+  overflow-y: auto;
+  border: none;
+  padding: 0;
+}
+
+#profileMovies {
+  overflow-y: auto;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  padding: 4px;
 }
 
 #delMovButton {
@@ -95,22 +258,23 @@ ul {
   height: 300px;
 }
 
-.d-flex{
+#poster-container {
   overflow-x: auto;
+  overflow-y: hidden;
   position: relative;
   top: 45px;
 }
 
 #poster-image {
-  height: 180px;
   width: 130px;
+  height: 178px;
   display: inline-block;
   float: left;
 }
 
 .poster-border {
   width: 132px;
-  height: 182px;
+  height: 180px;
   border: 1px solid black;
   margin-right: 10px;
 }
@@ -145,98 +309,115 @@ ul {
   opacity: 0.8;
 }
 
+.user-space {
+  position: absolute;
+  width: 520px;
+  height: 715px;
+  top: 5px;
+  right: 8px;
+  border-radius: 8px;
+}
+
+.item-space {
+  position: absolute;
+  width: 570px;
+  height: 715px;
+  top: 5px;
+  left: 3px;
+  border-radius: 8px;
+}
+
 #user-space-title {
   position: absolute;
-  left: 180px;
-  top: 20px;
+  width: 130px;
+  text-align: center;
+  top: 5px;
+  left: 170px;
+}
+
+#item-space-title {
+  position: absolute;
+  width: 130px;
+  text-align: center;
+  top: 5px;
+  left: 170px;
 }
 
 #user-space-description {
   position: absolute;
   width: 460px;
-  height: 30px;
-  left: 30px;
-  top: 60px;
-  text-align: left;
+  height: 80px;
+  left: 5px;
+  top: 35px;
+  text-align: justify;
   font-size: 14px;
-}
-
-#item-space-title {
-  position: absolute;
-  left: 720px;
-  top: 20px;
 }
 
 #item-space-description {
   position: absolute;
-  text-align: left;
-  font-size: 14px;
-  left: 570px;
-  top: 60px;
   width: 460px;
-  height: 30px;
+  height: 80px;
+  left: 5px;
+  top: 35px;
+  text-align: justify;
+  font-size: 14px;
 }
 
-.user-space {
+.user-svg {
   background-color: white;
+  border-radius: 8px;
   width: 460px;
   height: 460px;
   border: 1px solid black;
   display: inline-block;
   float: left;
-  position: relative;
-  left: 20px;
-  top: 130px;
+  position: absolute;
+  top: 110px;
+  left: 5px;
+}
+
+.item-svg {
+  background-color: white;
+  border-radius: 8px;
+  width: 460px;
+  height: 460px;
+  border: 1px solid black;
+  display: inline-block;
+  float: right;
+  position: absolute;
+  top: 110px;
+  left: 5px;
 }
 
 .user-legend {
-  display: inline-block;
-  float: left;
-  position: relative;
-  left: 10px;
-  top: 130px;
-}
-
-.item-space {
-  background-color: white;
-  width: 460px;
-  height: 460px;
-  border: 1px solid black;
-  display: inline-block;
-  float: right;
   position: absolute;
-  right: 130px;
-  top: 130px;
+  top: 110px;
+  left: 453px;
 }
 
 .item-legend {
-  display: inline-block;
-  float: left;
   position: absolute;
-  right: 10px;
-  top: 130px;
+  width: 175px;
+  top: 110px;
+  left: 453px;
 }
 
 .user-hover {
-  background-color: white;
-  width: 480px;
-  height: 140px;
-  display: inline-block;
-  float: left;
+  width: 460px;
+  height: 120px;
   position: absolute;
-  left: 20px;
-  top: 595px;
+  top: 575px;
+  left: 8px;
   text-align: left;
+  font-size: 14px;
 }
 
 .item-hover {
-  background-color: white;
-  width: 480px;
-  height: 140px;
-  display: inline-block;
-  float: right;
+  width: 460px;
+  height: 120px;
   position: absolute;
-  right: 95px;
-  top: 595px;
+  top: 575px;
+  left: 8px;
   text-align: left;
+  font-size: 14px;
 }

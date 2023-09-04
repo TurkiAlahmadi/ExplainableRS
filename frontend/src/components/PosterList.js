@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ItemSpace} from "./ItemSpace";
 
-export const PosterList = ({itemData, itemColors}) => {
+export const PosterList = ({itemData, itemColors, setIsLoadingPosters}) => {
     const [recommendedItems, setRecommendedItems] = useState([]);
     const [hoveredPoster, setHoveredPoster] = useState(null);
     useEffect(() => {
@@ -12,11 +12,11 @@ export const PosterList = ({itemData, itemColors}) => {
             setRecommendedItems(recommendedMovies);
         }
     }, [itemData]);
+    setIsLoadingPosters(false);
     return (
         <>
-            <p id="app-header">MFExplain</p>
             <p id="recommendation-title">Recommended Movies:</p>
-            <div className="d-flex justify-content-start m-3">
+            <div id='poster-container' className="d-flex justify-content-start m-3">
                 {recommendedItems.map((movie) => (
                     <div className="poster-border">
                         <img id="poster-image" src={movie.poster} alt={movie.title}/>
@@ -25,6 +25,5 @@ export const PosterList = ({itemData, itemColors}) => {
                 ))}
             </div>
         </>
-
     );
 };

@@ -1,15 +1,14 @@
 import './App.css';
 import { UserProfile } from "./components/UserProfile";
-import { Posters } from "./components/Posters";
-import { Figures } from "./components/Figures";
 
 function App() {
 
   return (
-    <>
+    <div className='main-page'>
+        <p id="app-header">MFExplain</p>
         <UserProfile/>
-    </>
+    </div>
   );
-}
+};
 
 export default App;

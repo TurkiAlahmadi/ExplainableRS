@@ -1,21 +1,31 @@
-import { useState, useEffect } from "react";
 import {NewMovie} from "./NewMovie";
 import {MovieList} from "./MovieList";
 import {Figures} from "./Figures";
-import styles from "../stylings/UserProfile.module.css";
+import {InitialPage} from "./InitialPage";
+import { useState, useEffect } from "react";
+import Button from "react-bootstrap/Button";
 
 export const UserProfile = () => {
     const [newMovie, setNewMovie] = useState({});
     const [newRating, setNewRating] = useState(0);
 
-    let [userData, setUserData] = useState([]);
-    let [itemData, setItemData] = useState([]);
-    const [userRatedMovies, setUserRatedMovies] = useState([]);
+    const [userData, setUserData] = useState([]);
+    const [itemData, setItemData] = useState([]);
+    const [userMovies, setUserMovies] = useState([]);
+    const [movieUsers, setMovieUsers] = useState([]);
     const [recommendedItems, setRecommendedItems] = useState([]);
-    const [isLoadingData, setIsLoadingData] = useState(true);
 
-    // State to store the fetched movie titles
     const [movieTitles, setMovieTitles] = useState([]);
+    const [allMovies, setAllMovies] = useState([]);
+
+    const [selectedTitle, setSelectedTitle] = useState(null);
+    const [selectedRating, setSelectedRating] = useState(null);
+
+    const [isLoadingData, setIsLoadingData] = useState(true);
+    const [isLoadingPosters, setIsLoadingPosters] = useState(false);
+    const [isGeneratingRecs, setIsGeneratingRecs] = useState(false);
+
+
 
     // Fetch movie titles from the Flask backend
     useEffect(() => {
@@ -33,31 +43,49 @@ export const UserProfile = () => {
         fetchMovieTitles();
     }, []);
 
-    const handleMenuChange = ({ target }) => {
-        setNewRating(target.value);
+    const handleTitleChange = (selectedOption) => {
+        setSelectedTitle(selectedOption);
+        setNewMovie((prev) => ({
+            ...prev,
+            title: selectedOption ? selectedOption.value : null,
+        }));
     };
 
-    const [allMovies, setAllMovies] = useState([]);
+    const handleRatingChange = (selectedOption) => {
+        setSelectedRating(selectedOption);
+        setNewMovie((prev) => ({
+            ...prev,
+            rating: selectedOption ? selectedOption.value : null,
+        }));
+    };
+
     const handleAddMovie = (event) => {
         event.preventDefault();
+        let terminate = false
 
-        // Check if the selected title is valid and exists in the movieTitles list
-        if (!newMovie.title || newMovie.rating === "Movie Rating") return;
-        // Check if the selected title is in the list of movie titles
-        if (!movieTitles.includes(newMovie.title)) {
-            alert("Please select a valid movie title from the list.");
-            return;
+        // Check if the selected title is in the list of rated movie
+        allMovies.forEach(movie => {
+            if (movie.title === newMovie.title) {
+                alert("You already rated this movie! Delete it from the list to rate it again.");
+                terminate = true;
+            }
+        });
+        if (!terminate && newMovie.title && newMovie.rating) {
+            // Assign a unique id to the new movie
+            const newMovieWithId = {
+                ...newMovie,
+                id: Date.now(),
+            };
+
+            setAllMovies((prev) => [newMovieWithId, ...prev]);
+            setNewMovie({});
+            setNewRating(0);
+            setSelectedTitle(null);
+            setSelectedRating(null);
+        } else {
+            alert("Please add a movie and rate it");
         }
-        // Assign a unique id to the new movie
-        const newMovieWithId = {
-            ...newMovie,
-            id: Date.now(),
-        };
-
-        setAllMovies((prev) => [newMovieWithId, ...prev]);
-        setNewMovie({});
-        setNewRating(0);
-        };
+    };
 
     const handleDelete = (movieIdToRemove) => {
         setAllMovies((prev) => prev.filter(
@@ -79,7 +107,8 @@ export const UserProfile = () => {
                 const jsonResponse = await response.json();
                     setUserData(jsonResponse.userData);
                     setItemData(jsonResponse.itemData);
-                    setUserRatedMovies(JSON.parse(jsonResponse.userRatedMovies));
+                    setUserMovies(JSON.parse(jsonResponse.userMovies));
+                    setMovieUsers(JSON.parse(jsonResponse.movieUsers));
                     setRecommendedItems(jsonResponse.recommendedItems);
                     setIsLoadingData(false);
                 };
@@ -90,35 +119,61 @@ export const UserProfile = () => {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        const url = "http://localhost:5000/data";
-        setIsLoadingData(true);
-        sendProfile(url);
+        if (allMovies.length == 0){
+            alert("Add movies to generate recommendations.");
+        } else {
+            event.preventDefault();
+            const url = "http://localhost:5000/data";
+            setIsGeneratingRecs(true);
+            setIsLoadingPosters(true);
+            setIsLoadingData(true);
+            sendProfile(url);
+        }
     };
-
     return (
         <>
-            <div className={styles.UserProfile}>
+            <div className='UserProfile' style={{top: isGeneratingRecs ? '250px' : '30px'}} >
                 <h1 id="userprofile">Create a Movie Profile</h1>
                 <NewMovie
                     newMovie={newMovie}
                     setNewMovie={setNewMovie}
                     newRating={newRating}
-                    handleMenuChange={handleMenuChange}
                     handleAddMovie={handleAddMovie}
                     movieTitles={movieTitles}
+                    selectedTitle={selectedTitle}
+                    selectedRating={selectedRating}
+                    handleTitleChange={handleTitleChange}
+                    handleRatingChange={handleRatingChange}
                 />
+                <div id='buttonGroup' className="d-flex justify-content-between align-items-center mb-4">
+                    <Button id='addMovieButton' variant="primary" onClick={handleAddMovie} size="sm">
+                        Add Movie
+                    </Button>
+                    <Button id='submitButton' variant="success" onClick={handleSubmit} size="sm">
+                        Generate Recommendations
+                    </Button>
+                </div>
                 <MovieList allMovies={allMovies} handleDelete={handleDelete} />
-                <form onSubmit={handleSubmit}>
-                    <button type="submit">Generate Recommendations</button>
-                </form>
             </div>
+
+            <InitialPage
+                isLoadingData={isLoadingData}
+                isGeneratingRecs={isGeneratingRecs}
+            />
+            {isLoadingPosters && (
+            <div className='loading-background'>
+            <p id='loading-text'>Loading Data ...</p>
+            </div>
+            )}
             {!isLoadingData && (
                 <Figures
                     initUserData={userData}
                     initItemData={itemData}
-                    userRatedMovies={userRatedMovies}
+                    userMovies={userMovies}
+                    movieUsers={movieUsers}
                     recommendedItems={recommendedItems}
+                    isGeneratingRecs={isGeneratingRecs}
+                    setIsLoadingPosters={setIsLoadingPosters}
                 />
             )};
         </>

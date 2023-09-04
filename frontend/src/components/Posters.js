@@ -1,12 +1,8 @@
 import {PosterList} from "./PosterList";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export const Posters = () => {
+export const InitialPosters = () => {
     return (
-        <div className="container-fluid movie-app">
-            <div className="row">
-                <PosterList/>
-            </div>
-        </div>
+        <p>Test</p>
     );
 };
