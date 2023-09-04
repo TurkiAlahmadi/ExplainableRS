@@ -48,6 +48,7 @@ class MFExplainer:
 
     def get_user_and_item_data(self):
         # perform dimensionality reduction to user and item factors
+        # TODO: implement umap for user space
         tsne = TSNE(n_components=2, n_iter=1000, verbose=0, random_state=36)
         umap_model = umap.UMAP(n_components=2, n_neighbors=2, min_dist=0.9, metric='cosine')
         item_embeddings = umap_model.fit_transform(self.model.qi)
@@ -58,21 +59,25 @@ class MFExplainer:
         # find k nearest neighbors to the active user
         neighbors = self.user_space.find_KNN()
         # perform some preprocessing
-        self.item_space.preprocess(self.model, self.user, self.movies)
-        self.user_space.preprocess(self.model, self.user, self.movies)
-        # generate item-based recommendations
-        self.item_space.find_item_based_recommendations()
+        self.item_space.preprocess(self.model, self.user, self.movies, self.ratings)
+        self.user_space.preprocess(self.model, self.user, self.movies, self.ratings)
         # add active user tag and genre info for rated movies
         self.user_space.add_active_user_tags_and_genres()
+        # add liked movies by the active user
+        self.item_space.add_liked_movies_by_active_user()
+        # generate item-based recommendations
+        self.item_space.find_item_based_recommendations()
         # create item and user space dataframes
         self.item_space.create_space_df()
         self.user_space.create_space_df()
         # label recommended movies based on neighbors
-        self.item_space.label_neighbor_recommendations(neighbors, self.ratings)
-        # retrieve rated movies for each user
-        user_movies = self.user_space.retrieve_user_rated_movies()
+        self.item_space.label_neighbor_recommendations(neighbors)
+        # retrieve liked movies by each user
+        user_movies = self.user_space.retrieve_movies_per_user()
+        # retrieve users who liked each movie
+        movie_users = self.item_space.retrieve_users_per_movie()
         # retrieve user data
         user_data = self.user_space.retrieve_user_space_data()
         # retrieve item data
         item_data = self.item_space.retrieve_item_space_data()
-        return user_movies, user_data, item_data
+        return user_movies, movie_users, user_data, item_data

@@ -26,8 +26,8 @@ movies.add_genre_columns()
 # add active user
 active_user = UserProfile(active=True)
 # mock data
-movie_titles = ["Toy Story (1995)", "Sucker Punch (2011)"]
-movie_ratings = [4.0, 4.5]
+movie_titles = ["Heat (1995)", "Toy Story (1995)"]
+movie_ratings = [4.5, 4]
 # add movies
 df_profile = active_user.add_movies(movie_titles, movie_ratings, movies)
 # add active user profile to ratings dataset
@@ -58,11 +58,14 @@ user_space = ReducedSpace(user_embeddings, "user")
 neighbors = user_space.find_KNN()
 
 # perform some preprocessing
-item_space.preprocess(model, active_user, movies)
-user_space.preprocess(model, active_user, movies)
+item_space.preprocess(model, active_user, movies, ratings)
+user_space.preprocess(model, active_user, movies, ratings)
 
 # add active user tag and genre info for rated movies
 user_space.add_active_user_tags_and_genres()
+
+# add liked movies by the active user
+item_space.add_liked_movies_by_active_user()
 
 # generate item-based recommendations
 item_space.find_item_based_recommendations()
@@ -72,10 +75,13 @@ item_space.create_space_df()
 user_space.create_space_df()
 
 # label recommended movies based on neighbors
-item_space.label_neighbor_recommendations(neighbors, ratings)
+item_space.label_neighbor_recommendations(neighbors)
 
-# retrieve rated movies for each user
-user_movies = user_space.retrieve_user_rated_movies()
+# retrieve liked movies by each user
+user_movies = user_space.retrieve_movies_per_user()
+
+# retrieve users who liked each movie
+movie_users = item_space.retrieve_users_per_movie()
 
 # retrieve user data
 user_data = user_space.retrieve_user_space_data()
@@ -83,6 +89,4 @@ user_data = user_space.retrieve_user_space_data()
 # retrieve item data
 item_data = item_space.retrieve_item_space_data()
 
-#print("ratings dataset size: ", ratings.data.shape)
-#print(item_data)
-#print(type(user_movies))
+print("Okay")

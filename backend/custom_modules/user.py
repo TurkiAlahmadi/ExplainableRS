@@ -9,6 +9,7 @@ class UserProfile:
         else:
             self.userID = userID
         self.profile = {}
+        self.liked_movies = None
 
     def add_movies(self, movie_titles: list, movie_ratings: list, movie_dataset:object):
         """
@@ -34,6 +35,7 @@ class UserProfile:
                 {'userId': self.userID, 'movieId': movieID, 'rating': movie_ratings[i]},
                 index=[0])) # assuming that timestamp column is dropped
         profile_df = pd.concat(newrows).reset_index(drop=True)
+        self.liked_movies = profile_df[(profile_df.rating >= 4)].movieId.to_list()
         return profile_df
     def find_genre_distribution(self, movie_dataset:object, rating_dataset:object):
         """

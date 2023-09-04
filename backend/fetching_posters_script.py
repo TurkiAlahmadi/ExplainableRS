@@ -48,7 +48,8 @@ def get_poster(movie_Id):
 
 def edit_title(movie_title):
     """
-    Edit some movie titles by replacing "The" at the beginning of the title.
+    Edit some movie titles by removing "A", "An", and "The" from the end
+    of a title and adding them at the beginning of the title.
 
     :param: a movie title
     :return: a modified movie title, if applicable
@@ -56,6 +57,14 @@ def edit_title(movie_title):
     if ", The" in movie_title:
         title = movie_title.split(", The")
         title = "The " + title[0] + title[1]
+        return title
+    elif ", An" in movie_title:
+        title = movie_title.split(", An")
+        title = "An " + title[0] + title[1]
+        return title
+    elif ", A" in movie_title:
+        title = movie_title.split(", A")
+        title = "A " + title[0] + title[1]
         return title
     else:
         return movie_title

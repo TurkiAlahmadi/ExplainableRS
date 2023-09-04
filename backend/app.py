@@ -15,11 +15,11 @@ def post_and_get_data():
             movie_ratings.append(float(movie['rating']))
         explainer = MFExplainer()
         recommendations = explainer.get_recommendation_data(movie_titles, movie_ratings)
-        user_movies, user_data, item_data = explainer.get_user_and_item_data()
-
+        user_movies, movie_users, user_data, item_data = explainer.get_user_and_item_data()
         data = {"userData": user_data,
                 "itemData": item_data,
-                "userRatedMovies": user_movies,
+                "userMovies": user_movies,
+                "movieUsers": movie_users,
                 "recommendedItems": recommendations['titles']
                 }
         return jsonify(data)
