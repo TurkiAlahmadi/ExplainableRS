@@ -1,34 +1,36 @@
 .main-page {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #app-header {
   width: 1435px;
   margin: 1px 2px;
+  border: 1px solid black;
   border-radius: 20px;
-  border-color: white;
-  border-width: 1px;
   height: auto;
   position: absolute;
   top: 0;
-  color: white;
+  color: #faf9f9;
   font-weight: bold;
   display: block;
-  background-color: #466995;
+  background-color: #555b6e;
   text-align: center;
 }
 
 #recommendation-title {
   position: absolute;
   background-color: white;
-  color: black;
+  color: #555b6e;
   font-weight: bold;
-  top: 30px;
+  top: 27px;
   left: 15px;
 }
 
 .Instructions {
-  background-color: white;
+  background-color: #faf9f9;
+  color: #555b6e;
+  font-weight: bold;
   margin: 0 2px;
   border-radius: 20px;
   width: 1160px;
@@ -57,9 +59,10 @@
 }
 
 .UserProfile {
-  background-color: #466995;
+  background-color: #89b0ae;
   margin: 0 2px;
   position: absolute;
+  border: 1px solid black;
   border-radius: 20px;
   top: 0;
   left: 0px;
@@ -70,7 +73,7 @@
 }
 
 .Figures {
-  background-color: white;
+  background-color: #faf9f9;
   margin: 0 2px;
   border-radius: 20px;
   width: 1160px;
@@ -79,21 +82,7 @@
   left: 275px;
   top: 250px;
   float: left;
-  border: 1px solid black;
-  text-align: center;
-}
-
-#userprofile {
-  color: ghostwhite;
-  text-align: center;
-  font-weight: bold;
-  font-size: larger;
-  margin-bottom: 25px;
-}
-
-.title {
-  color: whitesmoke;
-  font-weight: bold;
+  border: 1px solid #555b6e;
   text-align: center;
 }
 
@@ -108,12 +97,13 @@ ul {
 }
 
 #userprofile {
-  color: ghostwhite;
+  color: #faf9f9;;
   text-align: center;
   font-weight: bold;
   font-size: larger;
   position: relative;
   top: 5px;
+  margin-bottom: 30px;
 }
 
 #movieTitle {
@@ -134,13 +124,13 @@ ul {
   border-radius: 30px;
   border-width: 1px;
   border-style: solid;
-  border-color: white;
+  border-color: #555b6e;
   position: relative;
   top: 0px;
-  width: 100px;
-  height: 50px;
-  background-color: #466995;
-  color: white;
+  width: 80px;
+  height: 36px;
+  background-color: #555b6e;
+  color: #faf9f9;
   font-weight: bold;
   font-size: 11px;
 }
@@ -150,13 +140,13 @@ ul {
   border-radius: 30px;
   border-width: 1px;
   border-style: solid;
-  border-color: white;
+  border-color: #555b6e;
   position: relative;
   top: 0px;
-  width: 100px;
-  height: 50px;
-  background-color: white;
-  color: #466995;
+  width: 80px;
+  height: 36px;
+  background-color: #bee3db;
+  color: #555b6e;
   font-weight: bold;
   font-size: 11px;
 }
@@ -166,13 +156,13 @@ ul {
   border-radius: 30px;
   border-width: 1px;
   border-style: solid;
-  border-color: white;
+  border-color: #555b6e;
   position: relative;
   top: 0px;
-  width: 120px;
-  height: 50px;
-  background-color: #466995;
-  color: white;
+  width: 140px;
+  height: 36px;
+  background-color: #555b6e;
+  color: #faf9f9;
   font-weight: bold;
   font-size: 11px;
 }
@@ -182,13 +172,13 @@ ul {
   border-radius: 30px;
   border-width: 1px;
   border-style: solid;
-  border-color: white;
+  border-color: #555b6e;
   position: relative;
   top: 0px;
-  width: 120px;
-  height: 50px;
-  background-color: white;
-  color: #466995;
+  width: 140px;
+  height: 36px;
+  background-color: #bee3db;
+  color: #555b6e;
   font-weight: bold;
   font-size: 11px;
 }
@@ -242,16 +232,6 @@ ul {
   padding: 4px;
 }
 
-#delMovButton {
-  color: black;
-  background-color: #466995;
-  font-weight: bold;
-  display: inline-block;
-  float: right;
-  position: relative;
-  right: 0;
-}
-
 .row {
   background-color: white;
   display: inline-block;
@@ -262,7 +242,7 @@ ul {
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;
-  top: 45px;
+  top: 40px;
 }
 
 #poster-image {
@@ -311,11 +291,11 @@ ul {
 
 .user-space {
   position: absolute;
-  width: 520px;
+  width: 535px;
   height: 715px;
   top: 5px;
-  right: 8px;
-  border-radius: 8px;
+  right: 3px;
+  border-radius: 20px;
 }
 
 .item-space {
@@ -324,7 +304,7 @@ ul {
   height: 715px;
   top: 5px;
   left: 3px;
-  border-radius: 8px;
+  border-radius: 20px;
 }
 
 #user-space-title {
@@ -332,7 +312,7 @@ ul {
   width: 130px;
   text-align: center;
   top: 5px;
-  left: 170px;
+  left: 160px;
 }
 
 #item-space-title {
@@ -340,12 +320,12 @@ ul {
   width: 130px;
   text-align: center;
   top: 5px;
-  left: 170px;
+  left: 160px;
 }
 
 #user-space-description {
   position: absolute;
-  width: 460px;
+  width: 440px;
   height: 80px;
   left: 5px;
   top: 35px;
@@ -355,7 +335,7 @@ ul {
 
 #item-space-description {
   position: absolute;
-  width: 460px;
+  width: 440px;
   height: 80px;
   left: 5px;
   top: 35px;
@@ -366,57 +346,57 @@ ul {
 .user-svg {
   background-color: white;
   border-radius: 8px;
-  width: 460px;
-  height: 460px;
+  width: 440px;
+  height: 440px;
   border: 1px solid black;
   display: inline-block;
   float: left;
   position: absolute;
-  top: 110px;
+  top: 120px;
   left: 5px;
 }
 
 .item-svg {
   background-color: white;
   border-radius: 8px;
-  width: 460px;
-  height: 460px;
+  width: 440px;
+  height: 440px;
   border: 1px solid black;
   display: inline-block;
   float: right;
   position: absolute;
-  top: 110px;
+  top: 120px;
   left: 5px;
 }
 
 .user-legend {
   position: absolute;
-  top: 110px;
-  left: 453px;
+  top: 120px;
+  left: 435px;
 }
 
 .item-legend {
   position: absolute;
   width: 175px;
-  top: 110px;
-  left: 453px;
+  top: 120px;
+  left: 435px;
 }
 
 .user-hover {
-  width: 460px;
+  width: 440px;
   height: 120px;
   position: absolute;
-  top: 575px;
+  top: 565px;
   left: 8px;
   text-align: left;
   font-size: 14px;
 }
 
 .item-hover {
-  width: 460px;
+  width: 440px;
   height: 120px;
   position: absolute;
-  top: 575px;
+  top: 565px;
   left: 8px;
   text-align: left;
   font-size: 14px;

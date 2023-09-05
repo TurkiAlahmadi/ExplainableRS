@@ -13,19 +13,17 @@ export const Figures = ({initUserData,
 
     const userColors = {
         self: "orangered",
-        similar: "mediumblue",
+        similar: "royalblue",
         other: "lightblue",
-        selected: "brown",
-        highlighted: "grey",
+        highlighted: "black",
     }
 
     const itemColors = {
-        other: "navajowhite",
+        other: "burlywood",
         item_recommended: "limegreen",
-        user_recommended: "mediumblue",
+        user_recommended: "royalblue",
         rated: "orangered",
-        selected: "brown",
-        highlighted: "grey",
+        selected: "black",
     }
 
     const [userData, setUserData] = useState([]);

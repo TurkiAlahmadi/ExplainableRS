@@ -31,6 +31,7 @@ export const UserSpace = ({data, userDataUpdate, recommendationsUpdate, userList
         const legendData = [
             { label: "You", color: userColors.self },
             { label: "Similar", color: userColors.similar },
+            { label: "Highlighted", color: userColors.highlighted },
             { label: "Other", color: userColors.other },
         ];
 
@@ -44,9 +45,9 @@ export const UserSpace = ({data, userDataUpdate, recommendationsUpdate, userList
             .attr("r", 5)
             .attr("cx", 10)
             .attr("fill", d => d.color)
-            .attr("opacity", 0.6)
+            .attr("opacity", 0.7)
             .attr("stroke", d => d.color)
-            .attr("fill-opacity", 0.4)
+            .attr("fill-opacity", 0.5)
             .attr("stroke-width", 1);
 
         legendItems.append("text")

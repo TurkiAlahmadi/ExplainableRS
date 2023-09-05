@@ -1,8 +1,16 @@
-import { useState, useEffect } from "react";
-import styles from "../stylings/NewMovie.module.css";
+import { useEffect } from "react";
+import Select from 'react-select';
 
-export const NewMovie = ({ movieTitles, newMovie, setNewMovie, newRating, handleMenuChange, handleAddMovie }) => {
-    const [selectedTitle, setSelectedTitle] = useState("");
+export const NewMovie = ({
+                             movieTitles,
+                             newMovie,
+                             setNewMovie,
+                             newRating,
+                             selectedTitle,
+                             selectedRating,
+                             handleTitleChange,
+                             handleRatingChange,
+                         }) => {
 
     useEffect(() => {
         // Update newMovie state with the current newRating whenever newRating changes
@@ -12,58 +20,40 @@ export const NewMovie = ({ movieTitles, newMovie, setNewMovie, newRating, handle
         }));
     }, [newRating, setNewMovie]);
 
-    const handleTypeChange = ({ target }) => {
-        const { name, value } = target;
-        setSelectedTitle(value);
-        setNewMovie((prev) => ({
-            ...prev,
-            title: value,
-        }));
-    };
+    // Create an options array for the Select component
+    const options = movieTitles.map((title) => ({
+        value: title,
+        label: title,
+    }));
+
+    // Create options for ratings
+    const ratingOptions = Array.from({ length: 10 }, (_, index) => ({
+        value: (index + 1) * 0.5,
+        label: `${(index + 1) * 0.5}`,
+    }));
 
     return (
-        <form onSubmit={handleAddMovie} className={styles["movie-form"]}>
-            <div className={styles["input-container"]}>
-                <input
-                    type="text"
-                    list="movieTitles"
-                    id="movieTitleInput"
-                    name="title"
-                    placeholder="Type a Movie Title"
+        <>
+            <div>
+                <Select
+                    options={options}
                     value={selectedTitle}
-                    onChange={handleTypeChange}
+                    onChange={handleTitleChange}
+                    placeholder="Search for a Movie Title"
+                    isClearable={true}
                 />
-                <datalist id="movieTitles">
-                    {movieTitles.map((title) => (
-                        <option key={title} value={title} />
-                    ))}
-                </datalist>
             </div>
             {!newMovie.title ? null : (
-                <div className={styles["dropdown-menu"]}>
-                    <select
-                        id="rating"
-                        name="rating"
-                        value={newRating}
-                        onChange={handleMenuChange}
-                    >
-                        <option value="" disabled>
-                            Rate the movie
-                        </option>
-                        <option value={0.5}>0.5</option>
-                        <option value={1.0}>1.0</option>
-                        <option value={1.5}>1.5</option>
-                        <option value={2.0}>2.0</option>
-                        <option value={2.5}>2.5</option>
-                        <option value={3.0}>3.0</option>
-                        <option value={3.5}>3.5</option>
-                        <option value={4.0}>4.0</option>
-                        <option value={4.5}>4.5</option>
-                        <option value={5.0}>5.0</option>
-                    </select>
+                <div>
+                    <Select
+                        options={ratingOptions}
+                        value={selectedRating}
+                        onChange={handleRatingChange}
+                        placeholder="Rate the Movie"
+                        isClearable={true}
+                    />
                 </div>
             )}
-            <button type="submit">Add Movie</button>
-        </form>
+        </>
     );
 };

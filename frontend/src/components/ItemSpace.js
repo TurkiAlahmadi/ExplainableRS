@@ -27,8 +27,9 @@ export const ItemSpace = ({ data, itemDataUpdate, itemSelect, itemColors, itemLi
 
         const legendData = [
             { label: 'Your Rated Movies', color: itemColors["rated"] },
-            { label: 'Similar to Movies you Liked', color: itemColors["item_recommended"] },
             { label: 'Liked by Similar Users', color: itemColors["user_recommended"] },
+            { label: 'Similar to Movies you Liked', color: itemColors["item_recommended"] },
+            { label: 'Selected', color: itemColors.selected },
             { label: 'Other', color: itemColors.other },
         ];
 
@@ -42,9 +43,9 @@ export const ItemSpace = ({ data, itemDataUpdate, itemSelect, itemColors, itemLi
             .attr('r', 5)
             .attr('cx', 10)
             .attr('fill', (d) => d.color)
-            .attr('opacity', 0.5)
+            .attr('opacity', (d) => d.color === itemColors.other ? 0.5 : 0.7)
             .attr('stroke', (d) => d.color)
-            .attr('fill-opacity', (d) => (d.color === itemColors.other ? 0.1 : 0.5))
+            .attr('fill-opacity', (d) => (d.color === itemColors.other ? 0.4 : 0.5))
             .attr('stroke-width', 1);
 
         legendItems.append('text')
@@ -88,47 +89,35 @@ export const ItemSpace = ({ data, itemDataUpdate, itemSelect, itemColors, itemLi
             .attr('r', 5)
             .attr('cx', (d) => x(d.x))
             .attr('cy', (d) => y(d.y))
-            .attr('opacity', (d) => d.color === itemColors.other ? 0.4 : 0.7)
+            .attr('opacity', (d) => d.color === itemColors.other ? 0.5 : 0.7)
             .attr('stroke', (d) => d.color)
             .attr('fill', (d) => d.color)
-            .attr('fill-opacity', (d) => d.color === itemColors.other ? 0.35 : 0.5)
+            .attr('fill-opacity', (d) => d.color === itemColors.other ? 0.3 : 0.5)
             .attr('stroke-width', 1)
             .on('mouseenter', (event, d) => hoverOn(d))
             .on('mouseleave', () => hoverOff())
             .on("click", (event, d) => handleClick(event, d));
 
         if (selectedGenres.length > 0) {
-            createMarks.attr("fill-opacity", (d) => {
-                const itemGenres = d.genres.split(", ");
-                const filtered = selectedGenres.every(selectedGenre => itemGenres.includes(selectedGenre.value));
-                return filtered && d.color === itemColors.other ? 0.8 : filtered ? 1 : 0.1;
-            });
             createMarks.attr("opacity", (d) => {
                 const itemGenres = d.genres.split(", ");
                 const filtered = selectedGenres.every(selectedGenre => itemGenres.includes(selectedGenre.value));
                 return filtered && d.color === itemColors.other ? 1 : filtered ? 1 : 0.4;
             });
+            createMarks.attr("fill-opacity", (d) => {
+                const itemGenres = d.genres.split(", ");
+                const filtered = selectedGenres.every(selectedGenre => itemGenres.includes(selectedGenre.value));
+                return filtered && d.color === itemColors.other ? 0.7 : filtered ? 1 : 0.1;
+            });
             createMarks.attr('stroke', (d) => d.color);
             createMarks.exit().remove();
         } else {
             createMarks
-                .attr("fill-opacity", (d) => (d.color === itemColors.other ? 0.25 : 0.5))
-                .attr("opacity", (d) => d.color === itemColors.other ? 0.4 : 0.7)
-                .attr('fill', (d) => d.color)
+                .attr("opacity", (d) => d.color === itemColors.other ? 0.5 : 0.7)
+                .attr("fill-opacity", (d) => (d.color === itemColors.other ? 0.3 : 0.5))
+                .attr('fill', (d) =>  d.color)
                 .attr('stroke', (d) => d.color);
         }
-        /*
-        if (itemList.length > 0) {
-                createMarks
-                    .attr('stroke', (d) => d.id == 0 ? d.color : itemList.includes(d.id) ? "grey" : d.color)
-                    .attr('fill', (d) => d.id == 0 ? d.color : itemList.includes(d.id) ? "grey" : d.color)
-            createMarks.exit().remove();
-        } else {
-            createMarks
-                .attr('stroke', (d) => d.color)
-                .attr('fill', (d) => d.color)
-        }
-         */
 
         function handleClick(event, d) {
             setSelectedItem((prevSelectedItem) => {
@@ -136,7 +125,6 @@ export const ItemSpace = ({ data, itemDataUpdate, itemSelect, itemColors, itemLi
                     itemDataUpdate(prevSelectedItem, itemColors[prevSelectedItem.type]);
                 };
             });
-
             let tempColor = event.currentTarget.getAttribute('fill');
             if (tempColor !== itemColors["selected"]) {
                 tempColor = itemColors["selected"];
@@ -161,7 +149,7 @@ export const ItemSpace = ({ data, itemDataUpdate, itemSelect, itemColors, itemLi
     }, [data, itemColors, selectedGenres, itemList, selectedItem]);
 
     // Function to handle changes in selected genre options
-    const handleGenreSelect = (selectedList, selectedItem) => {
+    const handleGenreSelect = (selectedList, selectedMovie) => {
         setSelectedGenres(selectedList);
     };
 
