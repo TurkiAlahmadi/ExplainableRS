@@ -11,7 +11,7 @@
   height: auto;
   position: absolute;
   top: 0;
-  color: #faf9f9;
+  color: #f7ede2;
   font-weight: bold;
   display: block;
   background-color: #555b6e;
@@ -52,6 +52,7 @@
 }
 
 #loading-text {
+  color: #555b6e;
   text-align: center;
   font-weight: bold;
   font-size: larger;
@@ -82,41 +83,34 @@
   left: 275px;
   top: 250px;
   float: left;
-  border: 1px solid #555b6e;
+  border: 1px solid black;
   text-align: center;
 }
 
-ul {
-  color: whitesmoke;
-  list-style: none;
-  position: relative;
-  top: 20px;
-  right: 20px;
-  text-align: left;
-  padding: 0;
-}
-
-#userprofile {
+#user-profile-header {
   color: #faf9f9;;
   text-align: center;
   font-weight: bold;
   font-size: larger;
   position: relative;
-  top: 5px;
   margin-bottom: 30px;
 }
 
-#movieTitle {
-  font-weight: normal;
+.movie-select {
   font-size: small;
-  width: 170px;
-  margin-bottom: 5px;
+  border-radius: 20px;
+}
+
+.rating-select {
+  font-size: small;
+  position: relative;
+  top: 2px;
 }
 
 #buttonGroup {
   overflow-y: hidden;
   position: relative;
-  top: 12px;
+  top: 15px;
   margin: 0;
 }
 
@@ -130,7 +124,7 @@ ul {
   width: 80px;
   height: 36px;
   background-color: #555b6e;
-  color: #faf9f9;
+  color: #f7ede2;
   font-weight: bold;
   font-size: 11px;
 }
@@ -152,7 +146,7 @@ ul {
 }
 
 #submitButton {
-  padding: 0;
+  padding: 0px;
   border-radius: 30px;
   border-width: 1px;
   border-style: solid;
@@ -162,7 +156,7 @@ ul {
   width: 140px;
   height: 36px;
   background-color: #555b6e;
-  color: #faf9f9;
+  color: #f7ede2;
   font-weight: bold;
   font-size: 11px;
 }
@@ -183,6 +177,32 @@ ul {
   font-size: 11px;
 }
 
+#list-header {
+  color: #faf9f9;
+  font-weight: bold;
+  position: relative;
+  top: 0px;
+}
+
+.list-container {
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: 10px;
+  border: none;
+  position: relative;
+  width: 240px;
+  height: 550px;
+  top: 0px;
+}
+
+#movieTitle {
+  font-weight: normal;
+  font-size: small;
+  font-weight: bold;
+  width: 170px;
+  margin-bottom: 5px;
+}
+
 .delButton {
   padding: 1px;
   position: relative;
@@ -201,6 +221,7 @@ ul {
   position: relative;
   background-color: white;
 }
+
 .delButton:hover {
   padding: 1px;
   border: none;
@@ -217,30 +238,24 @@ ul {
   background-color: firebrick;
 }
 
-.list-container {
-  max-height: 500px;
-  overflow-y: auto;
-  border: none;
-  padding: 0;
-}
-
-#profileMovies {
-  overflow-y: auto;
-  position: relative;
-  top: 0px;
-  left: 0px;
-  padding: 4px;
-}
-
 .row {
   background-color: white;
   display: inline-block;
   height: 300px;
 }
 
+.recommendations-posters {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 #poster-container {
+  margin: 0;
   overflow-x: auto;
   overflow-y: hidden;
+  height: 205px;
+  width: 1410px;
   position: relative;
   top: 40px;
 }
@@ -300,7 +315,7 @@ ul {
 
 .item-space {
   position: absolute;
-  width: 570px;
+  width: 615px;
   height: 715px;
   top: 5px;
   left: 3px;
@@ -308,22 +323,29 @@ ul {
 }
 
 #user-space-title {
+  color: #555b6e;
   position: absolute;
   width: 130px;
   text-align: center;
+  font-weight: bold;
+  font-size: larger;
   top: 5px;
   left: 160px;
 }
 
 #item-space-title {
+  color: #555b6e;
   position: absolute;
   width: 130px;
   text-align: center;
+  font-weight: bold;
+  font-size: larger;
   top: 5px;
   left: 160px;
 }
 
 #user-space-description {
+  color: #555b6e;
   position: absolute;
   width: 440px;
   height: 80px;
@@ -334,6 +356,7 @@ ul {
 }
 
 #item-space-description {
+  color: #555b6e;
   position: absolute;
   width: 440px;
   height: 80px;
@@ -377,9 +400,9 @@ ul {
 
 .item-legend {
   position: absolute;
-  width: 175px;
   top: 120px;
   left: 435px;
+  width: 180px;
 }
 
 .user-hover {
@@ -400,4 +423,12 @@ ul {
   left: 8px;
   text-align: left;
   font-size: 14px;
+}
+
+.react-stars {
+  z-index: 0;
+}
+
+.optionContainer .option:hover {
+    background-color: #e7d8c9;
 }

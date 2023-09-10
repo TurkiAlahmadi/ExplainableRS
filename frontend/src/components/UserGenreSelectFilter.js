@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Multiselect from "multiselect-react-dropdown";
 
 export const UserGenreSelectFilter = ({selectedGenres, handleGenreSelect}) => {
@@ -17,9 +17,11 @@ export const UserGenreSelectFilter = ({selectedGenres, handleGenreSelect}) => {
                 onRemove={handleGenreSelect}
                 displayValue="key"
                 selectedValues={selectedGenres}
-                placeholder="Filter space by genre..."
+                placeholder={"Filter space by genre..."}
+                avoidHighlightFirstOption={true}
+                hidePlaceholder={true}
                 style={{
-                    chips: { background: '#466995', color: 'white' },
+                    chips: { background: '#e7d8c9', color: '#555b6e' },
                     option: { color: 'black' },
                     searchBox: { border: '1px solid #ccc', borderRadius: '8px', width: '436px', height: '45px'},
                     multiselectContainer: { "background-color": 'white', borderRadius: '8px', width: '436px',
