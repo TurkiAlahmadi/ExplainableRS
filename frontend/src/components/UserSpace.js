@@ -11,10 +11,16 @@ export const UserSpace = ({data, userDataUpdate, recommendationsUpdate, userList
 
     // Set width and height
     const margin = {top: 1, right: 1, bottom: 1, left: 1},
-        width = 460 - margin.left - margin.right,
-        height = 460 - margin.top - margin.bottom,
+        width = 440 - margin.left - margin.right,
+        height = 440 - margin.top - margin.bottom,
         legendWidth = 150,
         legendHeight = 200;
+
+    // Calculate the minimum and maximum x and y values from your data
+    const xMin = d3.min(data, d => d.x);
+    const xMax = d3.max(data, d => d.x);
+    const yMin = d3.min(data, d => d.y);
+    const yMax = d3.max(data, d => d.y);
 
     const svgRef = useRef(null);
     const legendRef = useRef(null);
@@ -54,7 +60,7 @@ export const UserSpace = ({data, userDataUpdate, recommendationsUpdate, userList
             .attr("x", 20)
             .attr("dy", "0.35em")
             .style("font-size", "12px")
-            .style("font-weight", "normal")
+            .style("font-weight", "lighter")
             .text(d => d.label);
 
         // Cleanup function to remove the legend when the component unmounts
@@ -66,8 +72,8 @@ export const UserSpace = ({data, userDataUpdate, recommendationsUpdate, userList
     useEffect(() => {
         const svg = d3.select(svgRef.current);
 
-        const x = d3.scaleLinear().domain([-5, 5]).range([0, width]);
-        const y = d3.scaleLinear().domain([-5, 5]).range([height, 0]);
+        const x = d3.scaleLinear().domain([xMin, xMax]).range([0, width]);
+        const y = d3.scaleLinear().domain([yMin, yMax]).range([height, 0]);
 
         const zoom = d3.zoom().scaleExtent([0.5, 10]).on("zoom", handleZoom);
         svg.call(zoom);
@@ -104,13 +110,14 @@ export const UserSpace = ({data, userDataUpdate, recommendationsUpdate, userList
             createMarks.attr("fill-opacity", (d) => {
                 if (!d.favoriteGenres) return 0.1
                 const userGenres = d.favoriteGenres.split(" ");
-                return selectedGenres.every(selectedGenre => userGenres.includes(selectedGenre.value)) ? 1 : 0.1;
-            });
-            createMarks.attr("opacity", (d) => {
+                return selectedGenres.every(selectedGenre => userGenres.includes(selectedGenre.value)) ? 0.6 : 0.1;
+            })
+            .attr("opacity", (d) => {
                 if (!d.favoriteGenres) return 0.1
                 const userGenres = d.favoriteGenres.split(" ");
                 return selectedGenres.every(selectedGenre => userGenres.includes(selectedGenre.value)) ? 1 : 0.4;
-            });
+            })
+            .attr("stroke", (d) => d.color);
 
             createMarks.exit().remove();
         } else {
@@ -123,10 +130,10 @@ export const UserSpace = ({data, userDataUpdate, recommendationsUpdate, userList
 
         if (userList.length > 0) {
             createMarks
-                .attr('stroke', (d) => d.id == 0 ? d.color : d.color == userColors["similar"] ? userColors["similar"] :
-                        userList.includes(d.id) ? userColors["highlighted"] : d.color)
+                .attr('stroke', (d) => userList.includes(d.id) ? userColors["highlighted"] : d.color)
                 .attr('fill', (d) => d.id == 0 ? d.color : d.color == userColors["similar"] ? userColors["similar"] :
                         userList.includes(d.id) ? userColors["highlighted"] : d.color)
+
             createMarks.exit().remove();
         } else {
             createMarks
@@ -149,21 +156,11 @@ export const UserSpace = ({data, userDataUpdate, recommendationsUpdate, userList
             let tempColor = event.currentTarget.getAttribute('fill');
             if (tempColor === userColors["self"]) return;
             else if (tempColor === userColors["other"] || tempColor === userColors["highlighted"]) {
-                console.log("okay")
                 tempColor = userColors["similar"];
-                //userSelect(d, false);
             }
             else if (tempColor === userColors["similar"]) {
                 tempColor = userColors["other"];
-                //userSelect(d, false);
             }
-            /*
-            else if (tempColor === userColors["selected"]) {
-                tempColor = userColors["similar"];
-                userSelect(d, true);
-            }
-
-             */
             userDataUpdate(d, tempColor);
             recommendationsUpdate();
         };
