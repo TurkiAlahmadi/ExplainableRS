@@ -1,14 +1,13 @@
+import React, {useState, useEffect} from "react";
 import {UserSpace} from "./UserSpace";
 import {ItemSpace} from "./ItemSpace";
 import {PosterList} from "./PosterList";
-import {useState, useEffect} from "react";
 
 export const Figures = ({initUserData,
                             initItemData,
                             userMovies,
                             movieUsers,
                             recommendedItems,
-                            isGeneratingRecs,
                             setIsLoadingPosters}) => {
 
     const userColors = {
@@ -26,11 +25,14 @@ export const Figures = ({initUserData,
         selected: "black",
     }
 
+    // Define state variables
     const [userData, setUserData] = useState([]);
     const [itemData, setItemData] = useState([]);
     const [userList, setUserList] = useState([]);
     const [itemList, setItemList] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [selectedPosterTitle, setSelectedPosterTitle] = useState(false);
+    const [clickChange, setClickChange] = useState(false);
 
     useEffect(() => {
         if (initUserData && initItemData) {
@@ -56,24 +58,7 @@ export const Figures = ({initUserData,
         setUserData(userData);
     };
 
-    // Handling highlighting movies liked by a user when selected
-    const handleUserSelect = (d, status) => {
-        if (status) {
-            let userLikedMovies = userMovies.find(user => user.id === d.id);
-            userLikedMovies = userLikedMovies.movies
-            let itemList = [];
-            itemData.forEach(movie => {
-                if (userLikedMovies.includes(movie.title)) {
-                    itemList.push(movie.id);
-                };
-            });
-            setItemList(itemList);
-        } else {
-            setItemList([]);
-        };
-    };
-
-    // Handling user data updates
+    // Handling item data updates
     const handleItemDataUpdate = (d, value) => {
         itemData.map(item => item.id === d.id ? item.color = value : item.color)
         setItemData(itemData);
@@ -92,6 +77,20 @@ export const Figures = ({initUserData,
         };
     };
 
+    // Handling clicking on poster titles
+    const handlePosterTitleClick = (title) => {
+        if (!title) {
+            setClickChange(true);
+            setSelectedPosterTitle(title);
+        } else if (selectedPosterTitle === title) {
+            setClickChange(false);
+            setSelectedPosterTitle(null);
+        } else {
+            setClickChange(true);
+            setSelectedPosterTitle(title);
+        }
+    };
+
     // Handling user-based recommendations updates when selected users change
     const handleRecommendationsUpdate = () => {
         // Find movies rated by selected users
@@ -101,11 +100,11 @@ export const Figures = ({initUserData,
             setItemData(itemData);
             return;
         }
-        const selectedUserRatedMovies = userMovies.filter(user => {
+        const selectedUsersLikedMovies = userMovies.filter(user => {
             return selectedUsers.some(u => {return u.id === user.id})
         });
         let selectedMovies = []
-        selectedUserRatedMovies.forEach(object => selectedMovies.push(...object.movies))
+        selectedUsersLikedMovies.forEach(object => selectedMovies.push(...object.movies))
         selectedMovies = selectedMovies.flat()
         // Update the recommendations based on the selected users
         const updatedRecItems = selectedMovies.filter((movie1) => {
@@ -131,27 +130,27 @@ export const Figures = ({initUserData,
             <PosterList
                 itemData={itemData}
                 itemColors={itemColors}
-                setItemData ={setItemData}
                 setIsLoadingPosters={setIsLoadingPosters}
+                onPosterTitleClick={handlePosterTitleClick}
             />
             <div className="Figures">
                 <UserSpace
                     data={userData}
                     userDataUpdate={handleUserDataUpdate}
                     recommendationsUpdate={handleRecommendationsUpdate}
-                    userSelect = {handleUserSelect}
                     userList = {userList}
                     userColors={userColors}
                 />
                 <ItemSpace
                     data= {itemData}
-                    userDataUpdate= {handleUserDataUpdate}
                     itemDataUpdate= {handleItemDataUpdate}
                     itemSelect = {handleItemSelect}
-                    itemList= {itemList}
                     itemColors= {itemColors}
+                    itemList= {itemList}
                     selectedItem = {selectedItem}
                     setSelectedItem = {setSelectedItem}
+                    selectedPosterTitle={selectedPosterTitle}
+                    clickChange={clickChange}
                 />
             </div>
         </>
