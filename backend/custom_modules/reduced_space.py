@@ -168,10 +168,10 @@ class ReducedSpace:
             self.data["genres"] = self.data["genres"].apply(lambda x: x.replace("|", ", "))
             self.data = self.data.merge(self.movie_info[['movieId', 'top_5_tags']], how='left', left_on='movieId',
                                         right_on='movieId')
-            self.data[['top_5_tags']] = self.data[['top_5_tags']].fillna(value="no tags available")
+            self.data['top_5_tags'] = self.data['top_5_tags'].fillna(value="no tags available")
             self.data["type"] = self.data["innerId"].apply(lambda x: "rated" if x in self.profile_innerIDs
-                                                        else ("MF recommendation" if x in self.recommended_movieIDs
                                                         else ("item_recommended" if x in self.item_based_recs
+                                                        else ("MF recommendation" if x in self.recommended_movieIDs
                                                         else "other")))
         elif self.type == "user":
             self.data = pd.DataFrame(columns=['x', 'y'], data=self.data)

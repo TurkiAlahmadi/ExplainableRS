@@ -91,10 +91,10 @@ def user_tag_count(uid):
 
 def user_top_5(lst):
     """
-    find the 5 most frequent tags for a movie.
+    find the 5 most frequent tags or genres for a user.
 
-    :param lst: a list of tuples containing tags and tag frequencies
-    :return: a string of the top 5 tags for a user
+    :param lst: a list of tuples containing tags/genres and their frequencies
+    :return: a string of the top 5 tags/genres for a user
     """
     top_five = lst[:5]
     top_five = ["{} ({} movies)".format(x[0], x[1]) for x in top_five]
@@ -151,7 +151,7 @@ movies_with_tags = df_movie_tags.movieId.tolist()
 df_movie_tags['tag'] = df_movie_tags['tag'].apply(movie_tag_count)
 # find top five tags for each movie
 df_movie_tags['top_5_tags'] = df_movie_tags['tag'].apply(movie_top_5_tags)
-# resert each tag frequency to 1 to find aggregate user tags
+# reset each tag frequency to 1 to find aggregate user tags
 df_movie_tags['user_tags'] = df_movie_tags['tag'].apply(reset_tag_count)
 
 ##### Find Movie Tags Associated with Users #####
@@ -167,16 +167,18 @@ df_user_tags = df_user_tags.groupby('userId').agg(lambda x: x.tolist()).reset_in
 df_user_tags['favorite_tags'] = df_user_tags.userId.apply(user_tag_count)
 # find top five tags for each user
 df_user_tags['top_5_tags'] = df_user_tags['favorite_tags'].apply(user_top_5)
+df_user_tags['top_5_tags'] = df_user_tags['top_5_tags'].fillna("no tags available")
 
 ##### Find Movie Genres and Top Genres for Each User #####
 
 # create a new dataframe for movie genres and create a column for each genre to find top genes for users later on
 df_movie_genres = add_genre_columns(movies.data)
-# seperate movie genres with commas
+# separate movie genres with commas
 df_movie_genres['genres'] = df_movie_genres['genres'].map(lambda x: x.replace("|", ", "))
 # create a final dataframe including all information about genres and tags
 df_movie_info = df_movie_genres[['movieId', 'title', 'genres']]
 df_movie_info = df_movie_info.merge(df_movie_tags, left_on='movieId', right_on='movieId', how='left')
+df_movie_info['top_5_tags'] = df_movie_info['top_5_tags'].fillna("no tags available")
 df_movie_info.fillna("", inplace=True)
 
 # find liked movies for each user

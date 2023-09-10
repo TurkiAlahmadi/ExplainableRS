@@ -43,16 +43,15 @@ class MFExplainer:
         # add movie internal IDs to the movie dataset
         self.movies.add_internal_movieID(self.model)
         # generate recommendations
-        self.recommendations = self.model.generate_recommendations(self.movies, self.user.profile, n_recs=100)
+        self.recommendations = self.model.generate_recommendations(self.movies, self.user.profile)
         return self.recommendations
 
     def get_user_and_item_data(self):
         # perform dimensionality reduction to user and item factors
-        # TODO: implement umap for user space
-        tsne = TSNE(n_components=2, n_iter=1000, verbose=0, random_state=36)
-        umap_model = umap.UMAP(n_components=2, n_neighbors=2, min_dist=0.9, metric='cosine')
-        item_embeddings = umap_model.fit_transform(self.model.qi)
-        user_embeddings = tsne.fit_transform(self.model.pu)
+        item_umap_model = umap.UMAP(n_components=2, n_neighbors=2, min_dist=0.9, metric='cosine', random_state=36)
+        user_umap_model = umap.UMAP(n_components=2, n_neighbors=5, min_dist=0.0, metric='cosine', random_state=36)
+        item_embeddings = item_umap_model.fit_transform(self.model.qi)
+        user_embeddings = user_umap_model.fit_transform(self.model.pu)
         # create item & user spaces
         self.item_space = ReducedSpace(item_embeddings, "item")
         self.user_space = ReducedSpace(user_embeddings, "user")
