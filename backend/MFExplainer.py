@@ -1,7 +1,5 @@
 from custom_modules import Dataset, UserProfile, Recommender, ReducedSpace
-from sklearn.manifold import TSNE
 import umap.umap_ as umap
-import pandas as pd
 
 class MFExplainer:
     """

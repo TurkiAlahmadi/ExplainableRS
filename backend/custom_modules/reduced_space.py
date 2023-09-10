@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import ast
 from itertools import chain
 from collections import Counter
 from sklearn.neighbors import NearestNeighbors
@@ -8,7 +7,7 @@ from .recommender import Recommender
 from .user import UserProfile
 from .dataset import Dataset
 from .neighbor_labeling import label_neighbor_rated, find_final_recommendations
-from data_preprocessing_script import create_titles_col
+from .preprocessing_functions import create_titles_col
 from .distance_functions import euclidean_similarity_matrix
 
 class ReducedSpace:

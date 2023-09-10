@@ -1,30 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81742665-a864-4dc6-b1a8-790ade81d9a9" name="Changes" comment="improve styling">
+    <list default="true" id="81742665-a864-4dc6-b1a8-790ade81d9a9" name="Changes" comment="add requirements.txt">
+      <change afterPath="$PROJECT_DIR$/custom_modules/preprocessing_functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MFExplainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/MFExplainer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom_modules/recommender.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_modules/recommender.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_modules/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_modules/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/custom_modules/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_modules/dataset.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/custom_modules/reduced_space.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom_modules/reduced_space.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/preprocessed_data/movie_tags_and_genres.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/preprocessed_data/movie_tags_and_genres.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_preprocessing_script.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_preprocessing_script.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fetching_posters_script.py" beforeDir="false" afterPath="$PROJECT_DIR$/fetching_posters_script.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/script.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Figures.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Figures.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ItemGenreSelectFilter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ItemGenreSelectFilter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ItemSpace.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ItemSpace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/MovieList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/MovieList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NewMovie.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NewMovie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/PosterList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/PosterList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/UserGenreSelectFilter.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/UserGenreSelectFilter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/UserProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/UserSpace.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/UserSpace.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/stylings/NewMovie.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/stylings/UserProfile.module.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +86,7 @@
       <workItem from="1688051267642" duration="44000" />
       <workItem from="1690045271300" duration="7881000" />
       <workItem from="1690292735029" duration="73493000" />
-      <workItem from="1692869534794" duration="39866000" />
+      <workItem from="1692869534794" duration="42266000" />
     </task>
     <task id="LOCAL-00001" summary="add main functionalities and features">
       <created>1692189332123</created>
@@ -130,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693870593170</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add requirements.txt">
+      <created>1694365686513</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1694365686513</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,7 +145,8 @@
     <MESSAGE value="add main functionalities and features" />
     <MESSAGE value="add new features to user and item space" />
     <MESSAGE value="improve styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="improve styling" />
+    <MESSAGE value="add requirements.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="add requirements.txt" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/backend$backend.coverage" NAME="backend Coverage Results" MODIFIED="1694175227658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

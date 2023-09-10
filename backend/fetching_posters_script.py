@@ -1,6 +1,7 @@
 import pandas as pd
 import requests
 import os
+from custom_modules.preprocessing_functions import edit_title
 
 # insert personal key
 API_KEY = ''
@@ -45,30 +46,6 @@ def get_poster(movie_Id):
         poster_path = data['poster_path']
         poster_url = f'https://image.tmdb.org/t/p/w500{poster_path}'
         return poster_url
-
-def edit_title(movie_title):
-    """
-    Edit some movie titles by removing "A", "An", and "The" from the end
-    of a title and adding them at the beginning of the title.
-
-    :param: a movie title
-    :return: a modified movie title, if applicable
-    """
-    if ", The" in movie_title:
-        title = movie_title.split(", The")
-        title = "The " + title[0] + title[1]
-        return title
-    elif ", An" in movie_title:
-        title = movie_title.split(", An")
-        title = "An " + title[0] + title[1]
-        return title
-    elif ", A" in movie_title:
-        title = movie_title.split(", A")
-        title = "A " + title[0] + title[1]
-        return title
-    else:
-        return movie_title
-
 
 # load files
 MovieLens_links = pd.read_csv('data/ml-latest-small/links.csv')

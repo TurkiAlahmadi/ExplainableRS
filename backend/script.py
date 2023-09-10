@@ -89,4 +89,4 @@ user_data = user_space.retrieve_user_space_data()
 # retrieve item data
 item_data = item_space.retrieve_item_space_data()
 
-print(len(recommendations['movieIds']))
+print("Okay")

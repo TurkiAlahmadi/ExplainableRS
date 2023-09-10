@@ -1,5 +1,6 @@
 import pandas as pd
 from .recommender import Recommender
+from .preprocessing_functions import edit_title
 class Dataset:
     def __init__(self, type):
         self.type = type
@@ -92,11 +93,4 @@ class Dataset:
     def edit_movie_title(self):
         if self.type != "movies":
             raise ValueError("The instance argument of this method should be of type 'movies' only")
-        def edit_title(movie_title):
-            if ", The" in movie_title:
-                title = movie_title.split(", The")
-                title = "The " + title[0] + title[1]
-                return title
-            else:
-                return movie_title
         self.data.title = self.data.title.apply(edit_title)
