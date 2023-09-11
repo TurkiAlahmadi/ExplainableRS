@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app,
      origins='https://mfexplain.onrender.com',
      methods=["GET", "POST", "OPTIONS"],
-     allow_headers=["Access-Control-Allow-Origin", "Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"],
+     allow_headers=["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"],
      )
 
 @app.route("/data", methods= ["GET", "POST"])
