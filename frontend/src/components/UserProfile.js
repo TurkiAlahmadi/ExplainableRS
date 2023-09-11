@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { MovieList } from "./MovieList";
 import { NewMovie } from "./NewMovie";
 import { Figures } from "./Figures";
-import { InitialPage } from "./InitialPage";
+import { ToolDescription } from "./ToolDescription";
 import Button from "react-bootstrap/Button";
 import { Steps } from 'intro.js-react';
 import "intro.js/introjs.css";
@@ -201,7 +201,7 @@ export const UserProfile = () => {
                 />
             </div>
 
-            <InitialPage
+            <ToolDescription
                 isLoadingData={isLoadingData}
                 isGeneratingRecs={isGeneratingRecs}
             />
@@ -259,8 +259,7 @@ export const UserProfile = () => {
                       background-color: #faf9f9;
                       color: #555b6e;
                       font-weight: bold;
-                      font-size: 14px;  
-                `
+                      font-size: 14px;`
                         }
                     </style>
                 </>
