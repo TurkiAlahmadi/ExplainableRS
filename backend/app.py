@@ -3,7 +3,7 @@ from flask_cors import CORS, cross_origin
 from MFExplainer import MFExplainer
 
 app = Flask(__name__)
-CORS(app, origins='*')
+CORS(app, origins='https://mfexplain.onrender.com')
 
 @app.route("/data", methods= ["GET", "POST"])
 @cross_origin(origin='https://mfexplain.onrender.com', headers=['Content-Type', 'Authorization'])
