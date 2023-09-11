@@ -1,13 +1,9 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from MFExplainer import MFExplainer
 
 app = Flask(__name__)
-CORS(app,
-     origins='https://mfexplain.onrender.com',
-     methods=["GET", "POST", "OPTIONS"],
-     allow_headers=["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"],
-     )
+CORS(app, origins="*", send_wildcard(True)
 
 @app.route("/data", methods= ["GET", "POST"])
 def post_and_get_data():
