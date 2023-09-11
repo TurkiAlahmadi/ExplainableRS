@@ -3,7 +3,7 @@ from flask_cors import CORS
 from MFExplainer import MFExplainer
 
 app = Flask(__name__)
-CORS(app, origins="*", send_wildcard(True)
+CORS(app, origins="*", send_wildcard(True))
 
 @app.route("/data", methods= ["GET", "POST"])
 def post_and_get_data():
