@@ -4,7 +4,7 @@ from MFExplainer import MFExplainer
 
 app = Flask(__name__)
 CORS(app,
-     origins='https://mfexplain.onrender.com/',
+     origins='https://mfexplain.onrender.com',
      methods=["GET", "POST", "OPTIONS"],
      allow_headers=["Origin, X-Requested-With, Content-Type, Accept, Authorization"],
      )
