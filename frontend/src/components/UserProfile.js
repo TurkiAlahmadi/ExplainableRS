@@ -59,7 +59,7 @@ export const UserProfile = () => {
         // Fetch movie titles from the Flask backend
         const fetchMovieTitles = async () => {
             try {
-                const response = await fetch("http://localhost:5000/data");
+                const response = await fetch("https://mfexplain-server.onrender.com/data");
                 if (response.ok) {
                     const data = await response.json();
                     setMovieTitles(data.movieTitles);
@@ -161,7 +161,7 @@ export const UserProfile = () => {
             alert("Add movies to your profile to generate recommendations.");
         } else {
             event.preventDefault();
-            const url = "http://localhost:5000/data";
+            const url = "https://mfexplain-server.onrender.com/data";
             setIsGeneratingRecs(true);
             setIsLoadingPosters(true);
             setIsLoadingData(true);
