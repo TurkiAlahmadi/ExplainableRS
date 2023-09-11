@@ -25,7 +25,7 @@ export const UserGenreSelectFilter = ({selectedGenres, handleGenreSelect}) => {
                     option: { color: 'black' },
                     searchBox: { border: '1px solid #ccc', borderRadius: '8px', width: '436px', height: '45px'},
                     multiselectContainer: { "background-color": 'white', borderRadius: '8px', width: '436px',
-                        height: '45px', position: 'absolute', left: '7px', top: '122px' },
+                        height: '45px', position: 'absolute', left: '7px', top: '187px' },
                     optionContainer: {"background-color": 'white', width: '436px', height: '125px', position: 'absolute', left: '0px', top: '0px' },
                 }}
             />
