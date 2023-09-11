@@ -75,7 +75,7 @@ export const UserSpace = ({data, userDataUpdate, recommendationsUpdate, userList
         const x = d3.scaleLinear().domain([xMin, xMax]).range([0, width]);
         const y = d3.scaleLinear().domain([yMin, yMax]).range([height, 0]);
 
-        const zoom = d3.zoom().scaleExtent([0.5, 10]).on("zoom", handleZoom);
+        const zoom = d3.zoom().scaleExtent([0.5, 50]).on("zoom", handleZoom);
         svg.call(zoom);
 
         function handleZoom(event) {
@@ -175,8 +175,13 @@ export const UserSpace = ({data, userDataUpdate, recommendationsUpdate, userList
     return (
         <div className='user-space'>
             <h4 id="user-space-title">User Space</h4>
-            <p id="user-space-description">The user space displays all users. Hovering over users shows their preferneces below the figure.
-                Clicking on users allows labeling them as similar/other. Recommendations are updated based on similar users.
+            <p id="user-space-description">The user space displays all users. Users who have rated movies
+                similarly are closer to each other. Hovering over users shows their preferences based on
+                movies they liked below the figure. Clicking on users allows labeling them as "Similar"/"Other".
+                When a movie is selected in the item space, user points labeled with "other" appear grey, while
+                points labeled with "You" or "Similar" appear with a black border instead.
+                Applying genre filtering makes users satisfying the filtering condition appear darker, while
+                irrelevant users look more transparent.
             </p>
             <svg
                 className="user-svg"

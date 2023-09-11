@@ -88,7 +88,7 @@ export const ItemSpace = ({
         const x = d3.scaleLinear().domain([xMin, xMax]).range([0, width]);
         const y = d3.scaleLinear().domain([yMin, yMax]).range([height, 0]);
 
-        const zoom = d3.zoom().scaleExtent([0.5, 10]).on("zoom", handleZoom);
+        const zoom = d3.zoom().scaleExtent([0.5, 50]).on("zoom", handleZoom);
         svg.call(zoom);
         zoomRef.current = zoom;
 
@@ -199,8 +199,12 @@ export const ItemSpace = ({
     return (
         <div className='item-space'>
             <h4 id="item-space-title">Item Space</h4>
-            <p id="item-space-description">The item space displays all movies. Item proximity equates
-                to how similarly they were rated by users. Hovering over a movie provides more details about it below the figure.
+            <p id="item-space-description">The item space displays all movies. Items that are rated similarly
+                by users are closer to each other. Hovering over a movie provides more details about it below
+                the figure. Clicking on any of the posters above makes the corresponding movie point bigger in
+                this space to find it easily. Clicking on a movie in this space highlights users who liked this
+                movie (rated the movie 4 or above) in the user space. Applying genre filtering makes movies
+                satisfying the filtering condition appear darker, while irrelevant movies look more transparent.
             </p>
             <svg className="item-svg" width={width} height={height} ref={svgRef} />
             <svg
