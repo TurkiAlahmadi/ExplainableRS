@@ -228,6 +228,41 @@ export const UserProfile = () => {
                             onExit={() => setRecsStepsEnabled(false)}
                             onComplete={() => setShowSteps(false)}
                     />
+                    <style>
+                        {`.custom-tooltip {
+                     background-color: #faf9f9;
+                     color: #555b6e;
+                     border-radius: 20px;
+                     font-size: 16px;    
+                }
+                .custom-tooltip .introjs-button {
+                      height: 20px;
+                      width: 80px;
+                      padding: 0px 0px;
+                      border-radius: 30px;
+                      border-width: 1px;
+                      border-style: solid;
+                      border-color: #555b6e;
+                      background-color: #555b6e;
+                      color: #faf9f9;
+                      font-weight: bold;
+                      font-size: 11px;
+                      text-align: center;
+                      text-shadow: none;  
+                }
+                .custom-tooltip .introjs-skipbutton {
+                      padding: 0px 0px;
+                      position: absolute;
+                      top: 0px;
+                      right: 0px;
+                      border-radius: 60px;
+                      background-color: #faf9f9;
+                      color: #555b6e;
+                      font-weight: bold;
+                      font-size: 14px;  
+                `
+                        }
+                    </style>
                 </>
             )}
         </>
