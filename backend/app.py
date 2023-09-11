@@ -3,10 +3,14 @@ from flask_cors import CORS, cross_origin
 from MFExplainer import MFExplainer
 
 app = Flask(__name__)
-CORS(app, origins='https://mfexplain.onrender.com')
+CORS(app,
+     origins='https://mfexplain.onrender.com/',
+     methods=["GET", "POST", "OPTIONS"],
+     allow_headers=["Origin, X-Requested-With, Content-Type, Accept, Authorization"],
+     )
 
 @app.route("/data", methods= ["GET", "POST"])
-@cross_origin(origin='https://mfexplain.onrender.com', headers=['Content-Type', 'Authorization'])
+#@cross_origin(origin='https://mfexplain.onrender.com', headers=['Content-Type', 'Authorization'])
 def post_and_get_data():
     if request.method == 'POST':
         data = request.get_json()

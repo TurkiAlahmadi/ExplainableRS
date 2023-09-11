@@ -139,7 +139,9 @@ export const UserProfile = () => {
                 body: data,
                 headers: {
                     "Content-type": "application/json",
-                    "Access-Control-Allow-Origin": "https://mfexplain.onrender.com",
+                    "Access-Control-Allow-Origin": "https://mfexplain.onrender.com/",
+                    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+                    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
                 },
             });
             if (response.ok) {
