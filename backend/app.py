@@ -28,7 +28,7 @@ def post_and_get_data():
     else:
         explainer = MFExplainer()
         titles = explainer.movies.get_titles()
-        return jsonify({"movieTitles": titles})
+        return _corsify_actual_response(jsonify({"movieTitles": titles}))
 
 
 def _build_cors_preflight_response():
