@@ -1,15 +1,13 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS, cross_origin
+from flask import Flask, request, jsonify, make_response
 from MFExplainer import MFExplainer
 
 app = Flask(__name__)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route("/data", methods= ["GET", "POST"])
-@cross_origin()
+@app.route("/data", methods= ["GET", "POST", "OPTIONS"])
 def post_and_get_data():
-    if request.method == 'POST':
+    if request.method == "OPTIONS":
+        return _build_cors_preflight_response()
+    elif request.method == 'POST':
         data = request.get_json()
         movie_titles = []
         movie_ratings = []
@@ -25,12 +23,25 @@ def post_and_get_data():
                 "movieUsers": movie_users,
                 "recommendedItems": recommendations['titles']
                 }
-        return jsonify(data)
+        return _corsify_actual_response(jsonify(data))
 
     else:
         explainer = MFExplainer()
         titles = explainer.movies.get_titles()
         return jsonify({"movieTitles": titles})
+
+
+def _build_cors_preflight_response():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add('Access-Control-Allow-Headers', "*")
+    response.headers.add('Access-Control-Allow-Methods', "*")
+    return response
+
+
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 if __name__ == '__main__':
