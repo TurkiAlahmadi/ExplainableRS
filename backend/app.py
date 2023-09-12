@@ -1,14 +1,13 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from MFExplainer import MFExplainer
 
 app = Flask(__name__)
-CORS(app, 
-     origins="*",
-     allow_headers="*",
-     send_wildcard=True)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route("/data", methods= ["GET", "POST"])
+@app.route("/data")
+@cross_origin()
 def post_and_get_data():
     if request.method == 'POST':
         data = request.get_json()
