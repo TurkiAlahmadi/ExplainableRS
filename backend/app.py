@@ -6,7 +6,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route("/data")
+@app.route("/data", methods= ["GET", "POST"])
 @cross_origin()
 def post_and_get_data():
     if request.method == 'POST':
